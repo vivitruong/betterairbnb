@@ -270,3 +270,356 @@ const CreateListingForm = ({ isLoaded }) => {
             </div>
           </section>
         }
+
+
+{page >= 3 &&
+          <section className={page === 3 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">What kind of place will you host?</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Summarize your place:
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setType("Campsite"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Entire bungalow"
+                  className="create-type-input"
+                  value={type}
+                  onChange={updateType}
+                  required
+                  maxLength={30}
+                />
+                <div className="right-content-label">
+                  <label className="create-new-label-property">
+                    Select property type:
+                  </label>
+                </div>
+                <div className="create-categories-main">
+                  {categories.map((room_category) => {
+                    return (
+                      <div className="create-categories-outer">
+                        <input
+                          name={category}
+                          type="radio"
+                          className="create-category-radio"
+                          checked={category === room_category}
+                          value={category}
+                          onChange={() => { setCategory(room_category) }}
+                          required
+                        />
+                        <label className="create-category-label">{room_category}</label>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="right-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 4 &&
+          <section className={page === 4 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">How many guests would you like to welcome?</div>
+              <div className="create-content-right">
+                <div className="create-guests-outer">
+                  <label className="create-guests-label">
+                    Guests
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (guests > 1) setGuests(guests - 1) }} disabled={guests === 1}>-</button>
+                    {guests}
+                    <button onClick={() => setGuests(guests + 1)} disabled={guests === 16}>+</button>
+                  </div>
+                  <label className="create-guests-label">
+                    Beds
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (beds > 1) setBeds(beds - 1) }} disabled={beds === 1}>-</button>
+                    {beds}
+                    <button onClick={() => setBeds(beds + 1)} disabled={beds === 16}>+</button>
+                  </div>
+                  <label className="create-guests-label">
+                    Bedrooms
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }} disabled={bedrooms === 1}>-</button>
+                    {bedrooms}
+                    <button onClick={() => setBedrooms(bedrooms + 1)} disabled={bedrooms === 20}>+</button>
+                  </div>
+                  <label className="create-bathroom-label">
+                    Bathrooms
+                  </label>
+                  <div className="create-guests-buttons">
+                    <button onClick={() => { if (baths > 0.5) setBaths(baths - 0.5) }} disabled={baths === 0.5}>-</button>
+                    {baths}
+                    <button onClick={() => setBaths(baths + 0.5)} disabled={baths === 20}>+</button>
+                  </div>
+                </div>
+                <div className="create-content-buttons">
+                  <div className="back-next-buttons">
+                    <button type="button" onClick={() => { setPage(page - 1); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="button" onClick={() => { setPage(page + 1); setCheckInput(true) }} className="next-button">Next</button>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 5 &&
+          <section className={page === 5 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">Where's your place located?</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Provide your location
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={setDemoAddress} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="address"
+                      className="multi-input"
+                      value={address}
+                      onChange={e => { setAddress(e.target.value); }}
+                      required
+                      maxLength={100}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="city"
+                      className="multi-input"
+                      value={city}
+                      onChange={e => { setCity(e.target.value); }}
+                      required
+                      maxLength={50}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="state"
+                      className="multi-input"
+                      value={state}
+                      onChange={e => { setState(e.target.value); }}
+                      required
+                      maxLength={50}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="country"
+                      className="multi-input"
+                      value={country}
+                      onChange={e => { setCountry(e.target.value); }}
+                      required
+                      maxLength={50}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      placeholder="latitude (-90 to +90)"
+                      className="multi-input"
+                      value={lat}
+                      onChange={e => { setLat(e.target.value); }}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      placeholder="longitude (-180 to +180)"
+                      className="multi-input"
+                      value={lng}
+                      onChange={e => { setLng(e.target.value); }}
+                    />
+                  </div>
+                </div>
+                <div className="create-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+                <div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+        {page >= 6 &&
+          (<section className={page === 6 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">Now, let's describe your place</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <div>
+                    <label className="create-new-label">
+                      Create Your Description
+                    </label>
+                  </div>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restroom, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <div>
+                    <textarea
+                      type="text"
+                      placeholder="This is a beautiful beachfront, 3 bedroom cozy family cabin/home with breathtaking views of the lake! Enjoy two outside decks for relaxation and entertainment and the panoramic views of the West shore."
+                      className="create-input-textarea"
+                      value={description}
+                      onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
+                      maxLength={1000}
+                    >
+                    </textarea>
+                  </div>
+                </div>
+                <div className="right-content-button">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
+        {page >= 7 &&
+          (<section className={page === 7 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">Now for the fun part - set your price</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Create your price
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <div>
+                    <input
+                      type="number"
+                      placeholder="$"
+                      className="create-input"
+                      value={price}
+                      min={1}
+                      max={100000}
+                      onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
+                      required
+                    />
+                  </div>
+                  {errors.length > 0 && (<>
+                    <div className="error-message">Please return to the previous pages to correct the following errors: </div> <ul className="error-message-ul">
+                      {errors.map((error, i) => <li className="error-message-li" key={i}>{error}</li>)}
+                    </ul>
+                  </>
+                  )}
+                </div>
+                <div className="right-content-button">
+                  <div className="back-next-buttons">
+                    <button type="button" onClick={() => { setPage(6); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="submit" className="next-button" disabled={checkInput}>Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
+      </form >
+      <form onSubmit={handleImagesSubmit}>
+        {page >= 8 &&
+          (<section className={page === 8 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">Let's add some photos of your place</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Upload your images
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={setDemoImages} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <div>
+                    <input
+                      type="url"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
+                      className="multi-input"
+                      value={image1}
+                      onChange={e => { setImage1(e.target.value); }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="url"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
+                      className="multi-input"
+                      value={image2}
+                      onChange={e => { setImage2(e.target.value); }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="url"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
+                      className="multi-input"
+                      value={image3}
+                      onChange={e => { setImage3(e.target.value); }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="url"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
+                      className="multi-input"
+                      value={image4}
+                      onChange={e => { setImage4(e.target.value); }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="url"
+                      placeholder="image url required* (.jpeg, .jpg, .png)"
+                      className="multi-input"
+                      value={image5}
+                      onChange={e => { setImage5(e.target.value); setCheckInput(false) }}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="right-content-button">
+                  <div className="back-next-buttons">
+                    <button type="button" className="back-button not-visible">Back</button>
+                    <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>)
+        }
+      </form>
+    </div >
+
+  )
+}
+
+export default CreateListingForm
