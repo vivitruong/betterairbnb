@@ -218,3 +218,55 @@ const CreateListingForm = ({ isLoaded }) => {
       history.push(`/rooms/${roomId}`)
     }
   }
+
+  return (
+    <div className="create-page">
+      <div className="create-listing-nav-main">
+        <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className="navigation-border"></div>
+      {page === 1 &&
+        <div className="create-content">
+          <div className="header-div">
+            <div className="create-header">Welcome</div>
+          </div>
+          <div className="create-content-right">
+            <div className="create-new-label">Start a new listing</div>
+            {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Create a new listing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
+              <button className="no-session-button" disabled="true">Login to begin hosting</button>}
+            <span className="white-space"></span>
+          </div>
+        </div>
+      }
+      <form onSubmit={handleSubmit} className={page < 8 ? "block" : "hidden"}>
+        {page >= 2 &&
+          <section className={page === 2 ? "block" : "hidden"}>
+            <div className="create-content">
+              <div className="create-header">Let's give your place a name</div>
+              <div className="create-content-right">
+                <div className="right-content-label">
+                  <label className="create-new-label">
+                    Create your title:
+                  </label>
+                  <div className="right-content-demo">
+                    <button type="button" onClick={() => { setName("Unique Eco-Glamping in Texas Hill Country"); setCheckInput(false) }} className="demo-buttons">demo</button>
+                  </div>
+                </div>
+                <div className="right-content-input">
+                  <input
+                    type="text"
+                    placeholder="Breathtaking Lakefront Villa"
+                    className="create-input"
+                    value={name}
+                    onChange={updateName}
+                    required
+                    maxLength={50}
+                  />
+                </div>
+                <div className="right-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
