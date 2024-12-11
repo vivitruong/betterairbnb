@@ -1,0 +1,32 @@
+.create-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .create-listing-nav-main {
+    width: 1130px;
+  }
+
+  .create-content {
+    display: flex;
+    margin: 2rem;
+  }
+
+  .create-content-right {
+    display: flex;
+    flex-direction: column;
+    padding: 8rem 2rem 0;
+  }
+
+  .create-guests-outer {
+    width: 26rem;
+    display: grid;
+    grid-template-columns: repeat(2, 13rem);
+  }
+
+  .right-content-input {
+    height: 23rem;
+    box-sizing: border-box;
+  }
