@@ -92,3 +92,187 @@ const EditListingForm = ({ listingId, returnToListing }) => {
           return returnToListing()
         }
       }
+
+
+      return (
+        <div className="edit-listing-page">
+          <div className="return-div">
+            <button onClick={returnToListing} className="return-to-listing-button">Return to Listing</button>
+          </div>
+          <div className="edit-listing-header">Edit your Listing</div>
+          <form onSubmit={handleSubmit} className="edit-listing-form">
+            <div className='edit-listing-place'>
+              <label className="edit-listing-label">Update your Place and Guests</label>
+              <input
+                type="text"
+                className="edit-listing-input place-input"
+                value={type}
+                onChange={e => setType(e.target.value)}
+                required
+                maxLength={30}
+              />
+              <span>
+                <label className="edit-guests-label"> Guests: </label>
+                <span className="edit-guests-buttons">
+                  <button type='button' onClick={() => { if (guests > 1) setGuests(guests - 1) }} disabled={guests === 1}>-</button>
+                  {guests}
+                  <button type='button' onClick={() => setGuests(guests + 1)} disabled={guests === 16}>+</button>
+                </span>
+                <label className="edit-guests-label"> Beds: </label>
+                <span className="edit-guests-buttons">
+                  <button type='button' onClick={() => { if (beds > 1) setBeds(beds - 1) }} disabled={beds === 1}>-</button>
+                  {beds}
+                  <button type='button' onClick={() => setBeds(beds + 1)} disabled={beds === 16}>+</button>
+                </span>
+                <label className="edit-guests-label"> Bedrooms: </label>
+                <span className="edit-guests-buttons">
+                  <button type='button' onClick={() => { if (bedrooms > 1) setBedrooms(bedrooms - 1) }} disabled={bedrooms === 1}>-</button>
+                  {bedrooms}
+                  <button type='button' onClick={() => setBedrooms(bedrooms + 1)} disabled={bedrooms === 20}>+</button>
+                </span>
+                <label className="edit-guests-label"> Bathrooms: </label>
+                <span className="edit-guests-buttons">
+                  <button type='button' onClick={() => { if (baths > 0.5) setBaths(Number(baths) - Number(0.50)) }} disabled={baths === 0.5}>-</button>
+                  {baths}
+                  <button type='button' onClick={() => setBaths(Number(baths) + Number(0.50))} disabled={baths === 20}>+</button>
+                </span>
+              </span>
+            </div>
+            <div>
+              <label className="edit-listing-label">Select Property Type</label>
+              <div className="edit-categories-main">
+                {categories.map((room_category) => {
+                  return (
+                    <div className="edit-categories-outer">
+                      <input
+                        name={category}
+                        type="radio"
+                        className="edit-category-radio"
+                        checked={category === room_category}
+                        value={category}
+                        onChange={() => setCategory(room_category)}
+                        required
+                      />
+                      <label className="edit-category-label">{room_category}</label>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+            <div>
+              <label className="edit-listing-title">Edit your Title</label>
+            </div>
+            <input
+              type="text"
+              className="edit-listing-input title-input"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              maxLength={50}
+              required
+            />
+            <div className="edit-listing-label">
+              <label>Update your Location</label>
+            </div>
+            <div className="edit-listing-address">
+              <input
+                type="text"
+                className="edit-listing-input address-input"
+                value={address}
+                onChange={e => setAddress(e.target.value)}
+                required
+                maxLength={100}
+              />
+            </div>
+            <div className="edit-listing-location">
+              <div>
+                <input
+                  type="text"
+                  className="edit-listing-input city-state-country"
+                  value={city}
+                  onChange={e => setCity(e.target.value)}
+                  required
+                  maxLength={50}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  className="edit-listing-input city-state-country"
+                  value={state}
+                  onChange={e => setState(e.target.value)}
+                  required
+                  maxLength={50}
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  className="edit-listing-input city-state-country"
+                  value={country}
+                  onChange={e => setCountry(e.target.value)}
+                  required
+                  maxLength={50}
+                />
+              </div>
+            </div>
+
+            <div className="edit-listing-coordinates">
+              <div>
+                <div className="edit-listing-lat">
+                  <label>Latitude</label>
+                </div>
+                <input
+                  type="number"
+                  className="edit-listing-input lat"
+                  value={lat}
+                  onChange={e => setLat(e.target.value)}
+                />
+              </div>
+              <div>
+                <div className="edit-listing-lng">
+                  <label>Longitude</label>
+                </div>
+                <input
+                  type="number"
+                  className="edit-listing-input lng"
+                  value={lng}
+                  onChange={e => setLng(e.target.value)}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="edit-listing-label">
+                <label>Update your Description</label>
+              </div>
+              <textarea
+                value={description}
+                className="edit-listing-input description"
+                onChange={e => setDescription(e.target.value)}
+                required
+                maxLength={1000}
+              ></textarea>
+            </div>
+            <div>
+              <div className="edit-listing-label">
+                <label>Price per Night</label>
+              </div>
+              <input
+                type="number"
+                value={price}
+                className="edit-listing-input price-input"
+                onChange={e => setPrice(e.target.value)}
+                required
+                min={1}
+                max={100000}
+              />
+            </div>
+            {errors.length > 0 && (<ul>
+              {errors.map((error, i) => <li key={i} className='update-error'>{error}</li>)}
+            </ul>)}
+            <button type="submit" disabled={disableButton} className="update-listing-button">Confirm</button>
+          </form>
+        </div >
+      )
+    }
+
+    export default EditListingForm
