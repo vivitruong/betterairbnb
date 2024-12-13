@@ -1,0 +1,32 @@
+.edit-listing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .edit-listing-form {
+    overflow-x: auto;
+    height: 1000px;
+  }
+
+  .return-div,
+  .edit-listing-header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .edit-listing-header {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .edit-listing-title {
+    font-size: 1.2rem;
+  }
+
+  .edit-listing-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+  }
