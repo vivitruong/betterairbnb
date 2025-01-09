@@ -1,0 +1,71 @@
+.main-nav {
+    height: 90px;
+  }
+
+  .navigation-outer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navigation-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem 1.3rem;
+    width: 100%;
+  }
+
+  .login {
+    margin-right: 8px;
+  }
+
+  .signup {
+    font-size: 18px;
+  }
+
+  .sign-up-link {
+    cursor: pointer
+  }
+
+  .home-link {
+    color: #ff385c;
+    display: flex;
+    font-weight: bold;
+  }
+
+  .airbnb-name {
+    align-items: center;
+    font-size: 1.4rem;
+    line-height: 20px;
+    padding-left: 8px;
+    padding-top: 14px;
+  }
+
+  @media screen and (max-width: 700px) {
+    .navigation-bar {
+      width: 34%;
+    }
+  }
+
+  @media screen and (min-width: 1300px) and (max-width: 1699px) {
+    .navigation-bar {
+      /* width: 72rem; */
+    }
+  }
+
+  @media screen and (min-width: 1150px) and (max-width: 1300px) {
+    .navigation-bar {
+      /* width: 64rem; */
+    }
+  }
+
+  @media screen and (min-width: 850px) and (max-width: 1150px) {
+    .navigation-bar {
+      /* width: 62rem; */
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .navigation-bar {
+      /* width: 45rem; */
+    }
+  }
